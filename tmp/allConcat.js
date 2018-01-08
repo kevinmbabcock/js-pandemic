@@ -5,6 +5,7 @@ $(document).ready(function() {
   $("#disease-name").submit(function(event) {
     event.preventDefault();
 
+
     let name = $("#select-name").val();
     let disease;
     if (name === "Malaria") {
@@ -14,7 +15,10 @@ $(document).ready(function() {
     } else if (name === "E. Coli") {
       disease = new Disease("E. Coli", 20, "parasite", "food-contamination");
     }
-    console.log(disease);
+
+    disease.setSpreadRate();
+
+
     $(".game").show();
     $(".disease-choice").hide();
 
@@ -47,9 +51,17 @@ $(document).ready(function() {
       } else if (number === 6) {
         type = "quarantine";
       }
-      console.log(type);
+
       disease.cure(type);
       $("#spread-rate").text(disease.spreadRate);
+
+
+      let result = disease.isWinner();
+      if (result) {
+        $("#result").text(result);
+        $(".game-over").show();
+        $(".game").hide();
+      }
     });
   });
 });

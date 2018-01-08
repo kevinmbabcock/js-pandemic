@@ -14,13 +14,37 @@ var Disease = exports.Disease = function () {
     _classCallCheck(this, Disease);
 
     this.name = name;
-    this.spreadRate = 1;
+    this.spreadRate = 20;
     this.mortalityRate = mortalityRate;
     this.causes = causes;
     this.spreadWay = spreadWay;
   }
 
   _createClass(Disease, [{
+    key: "setSpreadRate",
+    value: function setSpreadRate() {
+      var _this = this;
+
+      setInterval(function () {
+        _this.spreadRate += 10;
+        var result = _this.isWinner();
+        if (result) {
+          $("#result").text(result);
+          $(".game-over").show();
+          $(".game").hide();
+        }
+      }, 2000);
+    }
+  }, {
+    key: "isWinner",
+    value: function isWinner() {
+      if (this.spreadRate >= 100) {
+        return "You are a LOSER! The disease has taken over, everyone is dead";
+      } else if (this.spreadRate <= 0) {
+        return "You Win! You have successfully defeated the " + this.name + " disease";
+      }
+    }
+  }, {
     key: "cure",
     value: function cure(type) {
 
@@ -98,7 +122,9 @@ $(document).ready(function () {
     } else if (name === "E. Coli") {
       disease = new _disease.Disease("E. Coli", 20, "parasite", "food-contamination");
     }
-    console.log(disease);
+
+    disease.setSpreadRate();
+
     $(".game").show();
     $(".disease-choice").hide();
 
@@ -126,9 +152,16 @@ $(document).ready(function () {
       } else if (number === 6) {
         type = "quarantine";
       }
-      console.log(type);
+
       disease.cure(type);
       $("#spread-rate").text(disease.spreadRate);
+
+      var result = disease.isWinner();
+      if (result) {
+        $("#result").text(result);
+        $(".game-over").show();
+        $(".game").hide();
+      }
     });
   });
 });

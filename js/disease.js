@@ -2,10 +2,31 @@ export class Disease {
 
   constructor(name, mortalityRate, causes, spreadWay) {
     this.name = name;
-    this.spreadRate = 1;
+    this.spreadRate = 20;
     this.mortalityRate = mortalityRate;
     this.causes = causes;
     this.spreadWay = spreadWay;
+  }
+
+  setSpreadRate() {
+    setInterval(() => {
+      this.spreadRate += 10;
+      let result = this.isWinner();
+      if (result) {
+        $("#result").text(result);
+        $(".game-over").show();
+        $(".game").hide();
+      }
+    }, 2000);
+
+  }
+
+  isWinner() {
+    if (this.spreadRate >= 100) {
+      return "You are a LOSER! The disease has taken over, everyone is dead";
+    } else if (this.spreadRate <= 0) {
+      return `You Win! You have successfully defeated the ${this.name} disease`;
+    }
   }
 
   cure(type) {
