@@ -2,13 +2,38 @@
 <html>
   <head>
     <link rel="stylesheet" href="build/css/vendor.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="build/js/vendor.min.js"></script>
     <script type="text/javascript" src="build/js/app.js"></script>
-    <title></title>
+    <title>Pandemic</title>
   </head>
   <body>
     <div class="container">
-      
+      <h1 class="jumbotron">Pandemic</h1>
+      <h2>Can you find a cure in time? The fate of humanity is in your hands!</h2>
+      <div class="disease-choice">
+        <form id="disease-name">
+          <h4>Please choose one of the disease you are going to fight with:</h4>
+          <select class="form-control" id="select-name">
+            <option>Malaria</option>
+            <option>Smallpox</option>
+            <option>E. Coli</option>
+          </select>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="game">
+        <h2>This is all information you know about this disease:</h2>
+        <p>This disease is called <span id="name"></span></p>
+        <p>The current spread rate for the disease is: <span id="spread-rate"></span></p>
+        <p class="mortality-rate"><span id="mortality-rate"></span></p>
+        <p class="causes"><span id="causes"></span></p>
+        <p class="spread-way"><span id="spread-way"></span></p>
+        <h3>You have 10 minues to save Earth population from dying. You can either cure without knowledge or try to make some research.</h3>
+        <button class="btn-danger" id="fight">Fight!</button>
+        <button class="btn-success" id="research">Research a Cure</button>
+      </div>
+
     </div>
   </body>
 </html>
