@@ -17,7 +17,7 @@ export class Disease {
         $(".game-over").show();
         $(".game").hide();
       }
-    }, 120000);
+    }, 12000);
 
   }
 

@@ -5,6 +5,25 @@ $(document).ready(function() {
   $("#disease-name").submit(function(event) {
     event.preventDefault();
 
+    let request = new XMLHttpRequest();
+    let url = "http://api.giphy.com/v1/gifs/search?q=virus&api_key=p92SPca0B59XHHRf7fimWMw8GXoTrg8B&limit=10&rating=g";
+
+    request.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+        let response = JSON.parse(this.responseText);
+        getElements(response);
+      }
+    }
+
+    request.open("GET", url, true);
+    request.send();
+
+    const getElements = function(response) {
+      console.log(response);
+      response.data.forEach(function(image) {
+        $("#pic").prepend("<img src="+image.images.original.url+">");
+      })
+    };
 
     let name = $("#select-name").val();
     let disease;
@@ -43,7 +62,7 @@ $(document).ready(function() {
         $("#cause-result").text(result);
         $("#cause-search").hide();
 
-      })
+      });
       $("#spread-way-search").click(function() {
         let number = Math.floor((Math.random() * 2) + 1);
         let result;
@@ -55,18 +74,19 @@ $(document).ready(function() {
         }
         $("#spread-result").text(result);
         $("#spread-way-search").hide();
-      })
+      });
 
     });
 
     $("#fight").click(function() {
       $(".fight-type").show();
+      $(".fight-result").show();
       let type;
       $("#fight-type").submit(function(event) {
         event.preventDefault();
-        
+
         type = $("#remedy").val();
-      })
+      });
 
       let change = disease.cure(type);
       $("#spread-rate").text(disease.spreadRate);
@@ -79,7 +99,7 @@ $(document).ready(function() {
         $("#result").text(result);
         $(".game-over").show();
         $(".game").hide();
-      }
+      };
     });
   });
 });

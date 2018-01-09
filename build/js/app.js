@@ -33,7 +33,7 @@ var Disease = exports.Disease = function () {
           $(".game-over").show();
           $(".game").hide();
         }
-      }, 120000);
+      }, 12000);
     }
   }, {
     key: "isWinner",
@@ -132,6 +132,26 @@ $(document).ready(function () {
   $("#disease-name").submit(function (event) {
     event.preventDefault();
 
+    var request = new XMLHttpRequest();
+    var url = "http://api.giphy.com/v1/gifs/search?q=virus&api_key=p92SPca0B59XHHRf7fimWMw8GXoTrg8B&limit=10&rating=g";
+
+    request.onreadystatechange = function () {
+      if (this.readyState === 4 && this.status === 200) {
+        var response = JSON.parse(this.responseText);
+        getElements(response);
+      }
+    };
+
+    request.open("GET", url, true);
+    request.send();
+
+    var getElements = function getElements(response) {
+      console.log(response);
+      response.data.forEach(function (image) {
+        $("#pic").prepend("<img src=" + image.images.original.url + ">");
+      });
+    };
+
     var name = $("#select-name").val();
     var disease = void 0;
     if (name === "Malaria") {
@@ -183,6 +203,7 @@ $(document).ready(function () {
 
     $("#fight").click(function () {
       $(".fight-type").show();
+      $(".fight-result").show();
       var type = void 0;
       $("#fight-type").submit(function (event) {
         event.preventDefault();
@@ -200,7 +221,7 @@ $(document).ready(function () {
         $("#result").text(result);
         $(".game-over").show();
         $(".game").hide();
-      }
+      };
     });
   });
 });
