@@ -47,56 +47,75 @@ var Disease = exports.Disease = function () {
   }, {
     key: "cure",
     value: function cure(type) {
-
+      var change = void 0;
       if (type === "food-decontamination") {
         if (this.name === "Malaria") {
           this.spreadRate += 10;
+          change = 10;
         } else if (this.name === "Smallpox") {
           this.spreadRate += 10;
+          change = 10;
         } else if (this.name === "E. Coli") {
           this.spreadRate = 0;
+          change = 0;
         }
       } else if (type === "water-decontamination") {
         if (this.name === "Malaria") {
           this.spreadRate += 10;
+          change = 10;
         } else if (this.name === "Smallpox") {
           this.spreadRate += 10;
+          change = 10;
         } else if (this.name === "E. Coli") {
           this.spreadRate -= 5;
+          change = -5;
         }
       } else if (type === "air-decontamination") {
         if (this.name === "Malaria") {
           this.spreadRate += 10;
+          change = 10;
         } else if (this.name === "Smallpox") {
           this.spreadRate = 0;
+          change = 0;
         } else if (this.name === "E. Coli") {
           this.spreadRate += 10;
+          change = 10;
         }
       } else if (type === "antibiotics") {
         if (this.name === "Malaria") {
           this.spreadRate = 0;
+          change = 0;
         } else if (this.name === "Smallpox") {
           this.spreadRate += 10;
+          change = 10;
         } else if (this.name === "E. Coli") {
           this.spreadRate += 10;
+          change = 10;
         }
       } else if (type === "vaccination") {
         if (this.name === "Malaria") {
           this.spreadRate += 10;
+          change = 10;
         } else if (this.name === "Smallpox") {
           this.spreadRate = 0;
+          change = 0;
         } else if (this.name === "E. Coli") {
           this.spreadRate += 10;
+          change = 10;
         }
       } else if (type === "quarantine") {
         if (this.name === "Malaria") {
           this.spreadRate -= 5;
+          change = -5;
         } else if (this.name === "Smallpox") {
           this.spreadRate -= 5;
+          change = -5;
         } else if (this.name === "E. Coli") {
           this.spreadRate -= 5;
+          change = -5;
         }
       }
+      return change;
     }
   }]);
 
@@ -116,7 +135,7 @@ $(document).ready(function () {
     var name = $("#select-name").val();
     var disease = void 0;
     if (name === "Malaria") {
-      disease = new _disease.Disease("Malaria", 10, "bacteria", "direct-contact");
+      disease = new _disease.Disease("Malaria", 15, "bacteria", "direct-contact");
     } else if (name === "Smallpox") {
       disease = new _disease.Disease("Smallpox", 30, "virus", "air-contamination");
     } else if (name === "E. Coli") {
@@ -163,24 +182,18 @@ $(document).ready(function () {
     });
 
     $("#fight").click(function () {
-      var number = Math.floor(Math.random() * 6 + 1);
+      $(".fight-type").show();
       var type = void 0;
-      if (number === 1) {
-        type = "food-decontamination";
-      } else if (number === 2) {
-        type = "water-decontamination";
-      } else if (number === 3) {
-        type = "air-decontamination";
-      } else if (number === 4) {
-        type = "antibiotics";
-      } else if (number === 5) {
-        type = "vaccinations";
-      } else if (number === 6) {
-        type = "quarantine";
-      }
+      $("#fight-type").submit(function (event) {
+        event.preventDefault();
 
-      disease.cure(type);
+        type = $("#remedy").val();
+      });
+
+      var change = disease.cure(type);
       $("#spread-rate").text(disease.spreadRate);
+      $("#fight-type").text(type);
+      $("#fight-result").text(change);
 
       var result = disease.isWinner();
       if (result) {

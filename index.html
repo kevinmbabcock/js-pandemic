@@ -33,6 +33,24 @@
         <button class="btn-danger" id="fight">Fight!</button>
         <button class="btn-success" id="research">Research a Cure</button>
       </div>
+      <div class="fight-type">
+        <form id="fight-type" class="form-group">
+          <h4>Please select how you would like to fight the disease</h4>
+          <select class="form-group" id="remedy">
+            <option value="food-decontamination">Food Decontamination</option>
+            <option value="air-decontamination">Air Decontamination</option>
+            <option value="water-decontamination">Water Decontamination</option>
+            <option value="antibiotics">Antibiotics</option>
+            <option value="vaccination">Vaccinations</option>
+            <option value="quarantine">Quarantine</option>
+          </select>
+          <button type="submit" class="btn-success">Submit</button>
+        </form>
+      </div>
+      <div class="fight-result">
+        <p>You tried to fight the disease with <span id="fight-type"></span></p>
+        <p>The fight resulted in the spread rate <span id="fight-result"></span></p>
+      </div>
       <div class="research">
         <h3>Choose which type of research you would like to conduct. Be careful, you may only try each type of research once.</h3>
         <button id="cause-search">Research the cause</button>
@@ -40,7 +58,6 @@
         <button id="spread-way-search">Research the spread of the disease</button>
         <p>Your research <span id="spread-result"></span></p>
       </div>
-
       <div class="game-over">
         <p><span id="result"></span></p>
 

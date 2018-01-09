@@ -30,55 +30,74 @@ export class Disease {
   }
 
   cure(type) {
-
+    let change;
     if (type === "food-decontamination") {
       if (this.name === "Malaria") {
         this.spreadRate += 10;
+        change = 10;
       } else if (this.name === "Smallpox") {
         this.spreadRate += 10;
+        change = 10;
       } else if (this.name === "E. Coli") {
         this.spreadRate = 0;
+        change = 0;
       }
     } else if (type === "water-decontamination") {
       if (this.name === "Malaria") {
         this.spreadRate += 10;
+        change = 10;
       } else if (this.name === "Smallpox") {
         this.spreadRate += 10;
+        change = 10;
       } else if (this.name === "E. Coli") {
-        this.spreadRate -= 5 ;
+        this.spreadRate -= 5;
+        change = -5;
       }
     } else if (type === "air-decontamination") {
       if (this.name === "Malaria") {
         this.spreadRate += 10;
+        change = 10;
       } else if (this.name === "Smallpox") {
         this.spreadRate = 0;
+        change = 0;
       } else if (this.name === "E. Coli") {
         this.spreadRate += 10;
+        change = 10;
       }
     } else if (type === "antibiotics") {
       if (this.name === "Malaria") {
         this.spreadRate = 0;
+        change = 0;
       } else if (this.name === "Smallpox") {
         this.spreadRate += 10;
+        change = 10;
       } else if (this.name === "E. Coli") {
         this.spreadRate += 10;
+        change = 10;
       }
     } else if (type === "vaccination") {
       if (this.name === "Malaria") {
         this.spreadRate += 10;
+        change = 10;
       } else if (this.name === "Smallpox") {
         this.spreadRate = 0;
+        change = 0;
       } else if (this.name === "E. Coli") {
         this.spreadRate += 10;
+        change = 10;
       }
     } else if (type === "quarantine") {
       if (this.name === "Malaria") {
         this.spreadRate -= 5;
+        change = -5;
       } else if (this.name === "Smallpox") {
         this.spreadRate -= 5;
+        change = -5;
       } else if (this.name === "E. Coli") {
-        this.spreadRate -= 5 ;
+        this.spreadRate -= 5;
+        change = -5;
       }
     }
+    return change;
   }
 }

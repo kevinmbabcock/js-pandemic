@@ -9,7 +9,7 @@ $(document).ready(function() {
     let name = $("#select-name").val();
     let disease;
     if (name === "Malaria") {
-      disease = new Disease("Malaria", 10, "bacteria", "direct-contact");
+      disease = new Disease("Malaria", 15, "bacteria", "direct-contact");
     } else if (name === "Smallpox") {
       disease = new Disease("Smallpox", 30, "virus", "air-contamination");
     } else if (name === "E. Coli") {
@@ -60,24 +60,18 @@ $(document).ready(function() {
     });
 
     $("#fight").click(function() {
-      let number = Math.floor((Math.random() * 6) + 1);
+      $(".fight-type").show();
       let type;
-      if (number === 1) {
-        type = "food-decontamination";
-      } else if (number === 2) {
-        type = "water-decontamination";
-      } else if (number === 3) {
-        type = "air-decontamination";
-      } else if (number === 4) {
-        type = "antibiotics";
-      } else if (number === 5) {
-        type = "vaccinations";
-      } else if (number === 6) {
-        type = "quarantine";
-      }
+      $("#fight-type").submit(function(event) {
+        event.preventDefault();
+        
+        type = $("#remedy").val();
+      })
 
-      disease.cure(type);
+      let change = disease.cure(type);
       $("#spread-rate").text(disease.spreadRate);
+      $("#fight-type").text(type);
+      $("#fight-result").text(change);
 
 
       let result = disease.isWinner();
