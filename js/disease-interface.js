@@ -1,4 +1,5 @@
 import { Disease } from './../js/disease.js';
+var apiKey = require('./../.env').apiKey;
 
 $(document).ready(function() {
 
@@ -6,7 +7,7 @@ $(document).ready(function() {
     event.preventDefault();
 
     let request = new XMLHttpRequest();
-    let url = "http://api.giphy.com/v1/gifs/search?q=virus&api_key=p92SPca0B59XHHRf7fimWMw8GXoTrg8B&limit=10&rating=g";
+    let url = `http://api.giphy.com/v1/gifs/search?q=virus&api_key=${apiKey}&limit=2&rating=g`;
 
     request.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {

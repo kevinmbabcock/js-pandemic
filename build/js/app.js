@@ -1,4 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+exports.apiKey = "p92SPca0B59XHHRf7fimWMw8GXoTrg8B";
+
+},{}],2:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -122,10 +125,12 @@ var Disease = exports.Disease = function () {
   return Disease;
 }();
 
-},{}],2:[function(require,module,exports){
-"use strict";
+},{}],3:[function(require,module,exports){
+'use strict';
 
-var _disease = require("./../js/disease.js");
+var _disease = require('./../js/disease.js');
+
+var apiKey = require('./../.env').apiKey;
 
 $(document).ready(function () {
 
@@ -133,7 +138,7 @@ $(document).ready(function () {
     event.preventDefault();
 
     var request = new XMLHttpRequest();
-    var url = "http://api.giphy.com/v1/gifs/search?q=virus&api_key=p92SPca0B59XHHRf7fimWMw8GXoTrg8B&limit=10&rating=g";
+    var url = 'http://api.giphy.com/v1/gifs/search?q=virus&api_key=' + apiKey + '&limit=2&rating=g';
 
     request.onreadystatechange = function () {
       if (this.readyState === 4 && this.status === 200) {
@@ -226,4 +231,4 @@ $(document).ready(function () {
   });
 });
 
-},{"./../js/disease.js":1}]},{},[2]);
+},{"./../.env":1,"./../js/disease.js":2}]},{},[3]);
