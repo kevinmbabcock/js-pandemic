@@ -30,8 +30,32 @@ $(document).ready(function() {
 
 
     $("#research").click(function() {
+      $(".research").show();
+      $("#cause-search").click(function() {
+        let number = Math.floor((Math.random() * 2) + 1);
+        let result;
+        if (number === 1) {
+          result = "has led you to the cause of the disease";
+          $(".causes").show();
+        } else {
+          result = "did nothing";
+        }
+        $("#cause-result").text(result);
+        $("#cause-search").hide();
 
-
+      })
+      $("#spread-way-search").click(function() {
+        let number = Math.floor((Math.random() * 2) + 1);
+        let result;
+        if (number === 1) {
+          result = "has shown you how the disease spreads";
+          $(".spread-way").show();
+        } else {
+          result = "did nothing";
+        }
+        $("#spread-result").text(result);
+        $("#spread-way-search").hide();
+      })
 
     });
 

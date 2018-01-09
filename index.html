@@ -27,14 +27,18 @@
         <p>This disease is called <span id="name"></span></p>
         <p>The current spread rate for the disease is: <span id="spread-rate"></span></p>
         <p class="mortality-rate"><span id="mortality-rate"></span></p>
-        <p class="causes"><span id="causes"></span></p>
-        <p class="spread-way"><span id="spread-way"></span></p>
+        <p class="causes">The cause of this disease is: <span id="causes"></span></p>
+        <p class="spread-way">This disease is spread by: <span id="spread-way"></span></p>
         <h3>You have 10 minutes to save Earth population from dying. You can either cure without knowledge or try to make some research.</h3>
         <button class="btn-danger" id="fight">Fight!</button>
         <button class="btn-success" id="research">Research a Cure</button>
       </div>
       <div class="research">
-
+        <h3>Choose which type of research you would like to conduct. Be careful, you may only try each type of research once.</h3>
+        <button id="cause-search">Research the cause</button>
+        <p>Your research <span id="cause-result"></span></p>
+        <button id="spread-way-search">Research the spread of the disease</button>
+        <p>Your research <span id="spread-result"></span></p>
       </div>
 
       <div class="game-over">

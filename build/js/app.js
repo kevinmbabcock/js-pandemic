@@ -33,7 +33,7 @@ var Disease = exports.Disease = function () {
           $(".game-over").show();
           $(".game").hide();
         }
-      }, 2000);
+      }, 120000);
     }
   }, {
     key: "isWinner",
@@ -134,7 +134,33 @@ $(document).ready(function () {
     $("#causes").text(disease.causes);
     $("#spread-way").text(disease.spreadWay);
 
-    $("#research").click(function () {});
+    $("#research").click(function () {
+      $(".research").show();
+      $("#cause-search").click(function () {
+        var number = Math.floor(Math.random() * 2 + 1);
+        var result = void 0;
+        if (number === 1) {
+          result = "has led you to the cause of the disease";
+          $(".causes").show();
+        } else {
+          result = "did nothing";
+        }
+        $("#cause-result").text(result);
+        $("#cause-search").hide();
+      });
+      $("#spread-way-search").click(function () {
+        var number = Math.floor(Math.random() * 2 + 1);
+        var result = void 0;
+        if (number === 1) {
+          result = "has shown you how the disease spreads";
+          $(".spread-way").show();
+        } else {
+          result = "did nothing";
+        }
+        $("#spread-result").text(result);
+        $("#spread-way-search").hide();
+      });
+    });
 
     $("#fight").click(function () {
       var number = Math.floor(Math.random() * 6 + 1);
